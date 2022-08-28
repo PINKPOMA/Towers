@@ -19,7 +19,7 @@ public class TitleScene : MonoBehaviour
 
     private void LoadGameScene()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("SampleScene");
     }
     private void OnClickExitButton()
     {
