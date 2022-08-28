@@ -56,7 +56,7 @@ public class BuyTower : MonoBehaviour
             }
             hitObject.SetActive(false);
             buyTower.SetActive(false);
-            mainCamera.transform.position = new Vector3(0,150,-21.3999996f);
+            mainCamera.transform.position = new Vector3(0,150,-20f);
         }
     }
     public void IceTower()
@@ -83,7 +83,7 @@ public class BuyTower : MonoBehaviour
             }
             hitObject.SetActive(false);
             buyTower.SetActive(false);
-            mainCamera.transform.position = new Vector3(0,150,-21.3999996f);
+            mainCamera.transform.position = new Vector3(0,150,-20f);
         }
     }
     public void AreaTower()
@@ -110,7 +110,7 @@ public class BuyTower : MonoBehaviour
             }
             hitObject.SetActive(false);
             buyTower.SetActive(false);
-            mainCamera.transform.position = new Vector3(0,150,-21.3999996f);
+            mainCamera.transform.position = new Vector3(0,150,-20f);
         }
     }
 }
