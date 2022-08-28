@@ -13,23 +13,24 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("Attack");
+        StartCoroutine(Attack());
     }
 
     public IEnumerator Attack()
     {
         if (colliderEnemys.Count > 0)
         {
-            GameObject target = colliderEnemys[0];
+            var target = colliderEnemys[0];
             if (target != null)
-            {   
-                var towerBullet = Instantiate(bullet, transform.position, Quaternion.identity,transform);
-                towerBullet.GetComponent<Lamp>().targetPosition = (target.transform.position - transform.position).normalized;
+            {
+                var towerBullet = Instantiate(bullet, transform.position, Quaternion.identity, gameObject.transform);
+                towerBullet.GetComponent<Lamp>().target
+                    = target.transform;
                 towerBullet.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             }
         }
         yield return new WaitForSeconds(delay);
-        StartCoroutine("Attack");
+        StartCoroutine(Attack());
     }
     
     private void OnTriggerEnter(Collider collision)

@@ -9,15 +9,17 @@ public class IceTower : Tower
     void Start()
     {
         iceCol = GetComponent<Collider>();
-        StartCoroutine("IceAttack");
+        StartCoroutine(IceAttack());
     }
 
-    IEnumerator IceAttack()
+    private IEnumerator IceAttack()
     {
-        iceCol.enabled = false;
-        yield return new WaitForSeconds(2f);
-        iceCol.enabled = true;
-        yield return new WaitForSeconds(2f);
-        StartCoroutine("IceAttack");
+        while (true)
+        {
+            iceCol.enabled = false;
+            yield return new WaitForSeconds(2f);
+            iceCol.enabled = true;
+            yield return new WaitForSeconds(2f);
+        }
     }
 }

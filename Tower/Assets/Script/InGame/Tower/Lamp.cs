@@ -5,17 +5,33 @@ using UnityEngine;
 
 public class Lamp : MonoBehaviour
 {
-    public Vector3 targetPosition = Vector3.zero;
     public int upgrade;
     
+    public Transform target;
+
+    [Header("추격 속도")] [SerializeField] private float moveSpeed = 100f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        transform.Translate(targetPosition * Time.deltaTime * 100f);
-        float distance = Vector3.Distance(transform.position, transform.parent.position);
-        if (distance > 50f)
-        {
-            Destroy(gameObject);
-        }
+        FollowTarget();
+    }
+
+    void FollowTarget()
+    {
+        // 총알의 이동 속도가 많이 수상함
+        transform.position =
+            Vector2.MoveTowards(
+                transform.position,
+                target.position,
+                moveSpeed * Time.deltaTime
+            );
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -24,6 +40,7 @@ public class Lamp : MonoBehaviour
         {
             var damage = collision.gameObject.GetComponent<Enemy>();
             damage.hp -= upgrade * 10;
+            Destroy(gameObject);
         }
     }
 }
