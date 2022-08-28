@@ -9,7 +9,7 @@ public class IceTower : Tower
     
     void Start()
     {
-        State = CanonState.Slow;
+        State = TowerState.Slow;
         iceCol = GetComponent<Collider>();
         StartCoroutine(IceAttack());
     }

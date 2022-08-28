@@ -10,18 +10,18 @@ public partial class Canon : MonoBehaviour
 {
     private float _attackDelay = 0;
     [SerializeField] private GameObject[] canonObjects = new GameObject[4];
-    [SerializeField] private CanonInformation information;
+    [SerializeField] private TowerInformation information;
     
     public int Level { get; set; } = 1;
-    public CanonState State { get; set; }
+    public TowerState State { get; set; }
     
-    public void UpdateCanonInformation(int level, CanonState newState)
+    public void UpdateCanonInformation(int level, TowerState newState)
     {
         Level = level;
         State = newState;
-        if (newState != CanonState.Default)
+        if (newState != TowerState.Default)
         {
-            information = GameManager.Instance.CanonData[(int) State][Level - 1];   
+            information = GameManager.Instance.TowerData[(int) State][Level - 1];   
         }
         InitializeCanonObject();
     }
@@ -30,7 +30,7 @@ public partial class Canon : MonoBehaviour
     {
         for (var i = 0; i < canonObjects.Length; i++)
         {
-            if (State == CanonState.None) continue;
+            if (State == TowerState.None) continue;
             canonObjects[i].SetActive(i == (int) State);
         }
     }
@@ -39,7 +39,7 @@ public partial class Canon : MonoBehaviour
     {
         _attackDelay += Time.deltaTime;
         
-        if(State == CanonState.None) return;
+        if(State == TowerState.None) return;
         
         Attack();
 
@@ -60,7 +60,7 @@ public partial class Canon : MonoBehaviour
             return distanceA.CompareTo(distanceB);
         });
         
-        var targetCount = State == CanonState.MultiShot ? (int) Mathf.Min(col.Length, information.Extra) : 1;
+        var targetCount = State == TowerState.MultiShot ? (int) Mathf.Min(col.Length, information.Extra) : 1;
         var targets = col.Take(targetCount).ToList();
         foreach (var target in targets)
         {

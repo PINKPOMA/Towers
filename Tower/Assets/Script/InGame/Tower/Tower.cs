@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public CanonState State = CanonState.Default;
+    public TowerState State = TowerState.Default;
     public int level = 0;
 }

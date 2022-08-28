@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lamp : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public int Level;
-    public CanonState State;
+    public TowerState State;
 
     public int upgrade;
     

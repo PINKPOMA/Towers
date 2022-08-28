@@ -12,7 +12,7 @@ public class DefaultTower : Tower
     
     private void Start()
     {
-        State = CanonState.Default;
+        State = TowerState.Default;
         StartCoroutine(Attack());
     }
 
@@ -30,7 +30,7 @@ public class DefaultTower : Tower
             print("Shot");
             
             var towerBullet = Instantiate(bullet, transform.position, Quaternion.identity, gameObject.transform);
-            var bulletScript = towerBullet.GetComponent<Lamp>();
+            var bulletScript = towerBullet.GetComponent<Bullet>();
             towerBullet.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             bulletScript.Level = level;
             bulletScript.State = State;

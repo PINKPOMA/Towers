@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
             speed = 10;
     }
 
-    public void Hit(CanonState state, int towerLevel)
+    public void Hit(TowerState state, int towerLevel)
     {
         print($"Get Damage: {GameManager.Instance.GetCanonDate(state, towerLevel).Damage}\n" +
               $"{hp} => {hp - GameManager.Instance.GetCanonDate(state, towerLevel).Damage}");

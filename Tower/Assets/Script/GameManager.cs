@@ -5,7 +5,7 @@ using UnityEngine;
 
 #region Define_Canon_Informations
 
-public enum CanonState
+public enum TowerState
 {
     None = -1,
     Default = 0,
@@ -14,7 +14,7 @@ public enum CanonState
     Slow = 3,
 }
 
-public class CanonInformation
+public class TowerInformation
 {
     [field: SerializeField] public float Damage { get; set; }
     [field: SerializeField] public float AttackDelay { get; set; }
@@ -34,37 +34,37 @@ public class GameManager : Singleton<GameManager>
     
     #region Define_Canon_Informations
     
-    public CanonInformation[][] CanonData = 
+    public TowerInformation[][] TowerData = 
     {
-        new CanonInformation[] // Default Canon
+        new TowerInformation[] // Default Tower
         {
-            new CanonInformation {Damage = 3, AttackDelay = 2, Cost = 10}, // Level 1
-            new CanonInformation {Damage = 5, AttackDelay = 1.5f, Cost = 20}, // Level 2
-            new CanonInformation {Damage = 7, AttackDelay = 1, Cost = 30}, // Level 3
+            new TowerInformation {Damage = 3, AttackDelay = 2, Cost = 10}, // Level 1
+            new TowerInformation {Damage = 5, AttackDelay = 1.5f, Cost = 20}, // Level 2
+            new TowerInformation {Damage = 7, AttackDelay = 1, Cost = 30}, // Level 3
         },
-        new CanonInformation[] // Multi Shot Canon
+        new TowerInformation[] // Multi Shot Tower
         {
             // Extra : Count of Multi Target
-            new CanonInformation {Damage = 2, AttackDelay = 2, Cost = 20, Extra = 3}, // Level 1
-            new CanonInformation {Damage = 3, AttackDelay = 2, Cost = 100, Extra = 6}, // Level 2
-            new CanonInformation {Damage = 4, AttackDelay = 2, Cost = 200, Extra = 10}, // Level 3
+            new TowerInformation {Damage = 2, AttackDelay = 2, Cost = 20, Extra = 3}, // Level 1
+            new TowerInformation {Damage = 3, AttackDelay = 2, Cost = 100, Extra = 6}, // Level 2
+            new TowerInformation {Damage = 4, AttackDelay = 2, Cost = 200, Extra = 10}, // Level 3
         },
-        new CanonInformation[] // Laser Canon
+        new TowerInformation[] // Wide Range Tower
         {
-            new CanonInformation {Damage = 2, AttackDelay = 2, Cost = 20, Range = 1}, // Level 1
-            new CanonInformation {Damage = 4, AttackDelay = 2, Cost = 25, Range = 1.5f}, // Level 2
-            new CanonInformation {Damage = 5, AttackDelay = 1, Cost = 30, Range = 2}, // Level 3
+            new TowerInformation {Damage = 2, AttackDelay = 2, Cost = 20, Range = 1}, // Level 1
+            new TowerInformation {Damage = 4, AttackDelay = 2, Cost = 25, Range = 1.5f}, // Level 2
+            new TowerInformation {Damage = 5, AttackDelay = 1, Cost = 30, Range = 2}, // Level 3
         },
-        new CanonInformation[] // Slow Canon
+        new TowerInformation[] // Slow Tower
         {
             // Extra : Slow Down Enemy Speed Percent for 5 Seconds
-            new CanonInformation {Damage = 3, AttackDelay = 1, Cost = 20, Range = 1, Extra = 10}, // Level 1
-            new CanonInformation {Damage = 3, AttackDelay = 1, Cost = 50, Range = 1.5f, Extra = 20}, // Level 2
-            new CanonInformation {Damage = 3, AttackDelay = 1, Cost = 70, Range = 2, Extra = 40}, // Level 3
+            new TowerInformation {Damage = 3, AttackDelay = 1, Cost = 20, Range = 1, Extra = 10}, // Level 1
+            new TowerInformation {Damage = 3, AttackDelay = 1, Cost = 50, Range = 1.5f, Extra = 20}, // Level 2
+            new TowerInformation {Damage = 3, AttackDelay = 1, Cost = 70, Range = 2, Extra = 40}, // Level 3
         }
     };
 
-    public CanonInformation GetCanonDate(CanonState state, int level) => CanonData[(int) state][level];
+    public TowerInformation GetCanonDate(TowerState state, int level) => TowerData[(int) state][level];
     #endregion
     
     public void Start()
