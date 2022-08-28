@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 10;
-    [SerializeField] public float hp;
+    public float hp;
 
     private Transform _target;
     private int pointsIndex;
@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
+        hp = 10;
         _target = WayPoint.Waypoints[0];
         if (Random.Range(0, 2) != 0)
             moveIndex = new[] {0,1, 2, 3, 4, 1, 2, 5, 6};
@@ -31,7 +32,9 @@ public class Enemy : MonoBehaviour
         if(Vector3.Distance(transform.position,_target.position)<=0.4f)
         {
             GetNextWaypoint();
-        }   
+        }
+        
+        
     }
     
     private void GetNextWaypoint()
@@ -40,17 +43,33 @@ public class Enemy : MonoBehaviour
         if (pointsIndex == moveIndex.Length)
         {
             GameManager.Instance.EndSign();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         var wayPointIndex = moveIndex[pointsIndex];
         _target = WayPoint.Waypoints[wayPointIndex];
     }
 
-  
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Ice"))
             speed = 10;
+    }
+
+    public void Hit(CanonState state, int towerLevel)
+    {
+        print($"Get Damage: {GameManager.Instance.GetCanonDate(state, towerLevel).Damage}\n" +
+              $"{hp} => {hp - GameManager.Instance.GetCanonDate(state, towerLevel).Damage}");
+        
+        hp -= GameManager.Instance.GetCanonDate(state, towerLevel).Damage;
+        if (hp <= 0)
+        {
+            DeadSign();
+        }
+    }
+
+    private void DeadSign()
+    {
+        gameObject.SetActive(false);
+        GameManager.Instance.gold += 10;
     }
 }

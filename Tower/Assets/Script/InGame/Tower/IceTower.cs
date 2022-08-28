@@ -6,6 +6,7 @@ using UnityEngine;
 public class IceTower : Tower
 {
     private Collider iceCol;
+    
     void Start()
     {
         State = CanonState.Slow;
@@ -18,9 +19,9 @@ public class IceTower : Tower
         while (true)
         {
             iceCol.enabled = false;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(GameManager.Instance.GetCanonDate(State, level).AttackDelay);
             iceCol.enabled = true;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(GameManager.Instance.GetCanonDate(State, level).AttackDelay);
         }
     }
 }

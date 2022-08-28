@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Lamp : MonoBehaviour
 {
+    public int Level;
+    public CanonState State;
+
     public int upgrade;
     
     public Transform target;
@@ -25,7 +28,9 @@ public class Lamp : MonoBehaviour
 
     void FollowTarget()
     {
-        // 총알의 이동 속도가 많이 수상함
+        // 대상 오브젝트가 죽거나 파괴된 경우
+        if (target == null || target.gameObject.activeSelf == false) Destroy(gameObject);
+        
         transform.position = 
             Vector3.MoveTowards(
                 transform.position,
@@ -34,12 +39,12 @@ public class Lamp : MonoBehaviour
             );
     }
 
-    public void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var damage = collision.gameObject.GetComponent<Enemy>();
-            damage.hp -= upgrade * 10;
+            damage.Hit(State, Level);
             Destroy(gameObject);
         }
     }

@@ -28,9 +28,10 @@ public class CanonInformation
 
 public class GameManager : Singleton<GameManager>
 {
-    public int gold;
+    public int gold = 0;
 
     private RaycastHit hit;
+    
     #region Define_Canon_Informations
     
     public CanonInformation[][] CanonData = 
@@ -62,7 +63,8 @@ public class GameManager : Singleton<GameManager>
             new CanonInformation {Damage = 3, AttackDelay = 1, Cost = 70, Range = 2, Extra = 40}, // Level 3
         }
     };
-    
+
+    public CanonInformation GetCanonDate(CanonState state, int level) => CanonData[(int) state][level];
     #endregion
     
     public void Start()
