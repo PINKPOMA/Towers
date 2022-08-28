@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -36,6 +37,11 @@ public class Enemy : MonoBehaviour
     private void GetNextWaypoint()
     {
         pointsIndex++;
+        if (pointsIndex == moveIndex.Length)
+        {
+            GameManager.Instance.EndSign();
+            Destroy(gameObject);
+        }
         var wayPointIndex = moveIndex[pointsIndex];
         _target = WayPoint.Waypoints[wayPointIndex];
     }

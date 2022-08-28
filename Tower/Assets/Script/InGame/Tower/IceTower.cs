@@ -8,6 +8,7 @@ public class IceTower : Tower
     private Collider iceCol;
     void Start()
     {
+        State = CanonState.Slow;
         iceCol = GetComponent<Collider>();
         StartCoroutine(IceAttack());
     }

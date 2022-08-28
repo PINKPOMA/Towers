@@ -6,15 +6,6 @@ using UnityEngine;using UnityEngine.Rendering;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
-public enum CanonState
-{
-    None = -1,
-    Default = 0,
-    MultiShot = 1,
-    Laser = 2,
-    Slow = 3,
-}
-
 public partial class Canon : MonoBehaviour
 {
     private float _attackDelay = 0;
