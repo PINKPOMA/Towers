@@ -1,4 +1,4 @@
-```cs
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ public partial class Canon : MonoBehaviour
         State = newState;
         if (newState != CanonState.Default)
         {
-            information = GameManager.Instance.CanonData[(int) State][Level - 1];
+            information = GameManager.Instance.CanonData[(int) State][Level - 1];   
         }
         InitializeCanonObject();
     }
@@ -92,4 +92,3 @@ public partial class Canon : MonoBehaviour
         Gizmos.DrawSphere(position, radius);
     }
 }
-```
